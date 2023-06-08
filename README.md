@@ -13,5 +13,7 @@ I developed a graph-based greedy algorithm referring to the Louvain algorithm (B
 
 # Highlights of my code
 Compared to the Louvain method in the ”networkx” package (Hagberg et al., 2008), my codes can attain the function much more quickly. The probable reason accounting for the performance is that I used the derived formula which only considers a small part of the network and greatly reduces the computations rather than the global modularity.
+![image](https://github.com/HuangYutong2021/BMI3-project/assets/79962064/0d5dc266-783e-4c1f-b96a-37199ccba0f6)
+
 
 The complete codes for implementation are shown in the repository.
