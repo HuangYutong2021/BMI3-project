@@ -15,7 +15,7 @@ We developed a graph-based greedy algorithm referring to the Louvain algorithm (
 
 **3 Visualization**
 
-An undirected graph with CDRH3 sequences (nodes) and distances (edges) will be presented in the visualization. The actual position of the nodes in the two axes can be calculated through the FruchtermanReingold algorithm [FR91] and every node will be regarded as an electron. In that case, two types of forces play roles on every node: The coulomb force to avoid overlap of nodes and the tensile force to push nodes closer according to their TCR distances. Iterate it several times until the stabilization. After identifying the coordinates of each node, they are separately colored based on which cluster they belong to.
+An undirected graph with CDRH3 sequences (nodes) and distances (edges) will be presented in the visualization. The actual position of the nodes in the two axes can be calculated through the Fruchterman-Reingold algorithm [FR91] and every node will be regarded as an electron. In that case, two types of forces play roles on every node: The coulomb force to avoid overlap of nodes and the tensile force to push nodes closer according to their TCR distances. Iterate it several times until the stabilization. After identifying the coordinates of each node, they are separately colored based on which cluster they belong to.
 
 # Parameter explanation (including input & output formats)
 Thanks to the major writer: **Jianzhang Lu**
@@ -27,18 +27,27 @@ A .csv file must contain at least one column with the fixed name: CDR3b, which r
 **4.2 Parameter explanation**
 
 General usage: TCRcluster.py -i [-t] [-B] [-e] [-o] [-w] [-s] [-ver] -out
+
 Arguments:
+
 -h, –help: Show the quick and brief help message.
+
 -i, –input: The path of the input .csv file.
+
 -t, –trim: If this parameter is added, the conserved sequences of CDR3 (2 amino acids on the N-terminal side and the C-terminal side) will be trimmed and not used when calculating distances. If your input file has already contained trimmed sequences, please do not set this parameter.
+
 -B, –BLOSUM: Select the BLOSUM matrix used in global alignment to assign points for matched or mis￾matched amino acids. We currently provide two matrixes: BLOSUM-62 and BLOSUM-80. You can choose either 62 or 80 for this value. If your provided sequences seem to have higher similarities, we suggest using -B 80 or –BLOSUM 80. Additionally, if you have no idea about the degree of similarities of your sequences, just use our default value: -B 62 or –BLOSUM 62.
+
 -e, –extend: The penalty points for a gap extend (default -1).
+
 -o, –open: The penalty points for a gap open (default -5).
+
 -w, –weight: The percentage of CDR3b weight when calculating the distances between each TCR sequence. This value must be integers from 0 to 100 (default 100). For example, “100” means that only the CDR3b sequence will be considered, while “90” means that the final distances between each TCR sequence are equal to 90% of the CDR3b sequence distances plus 10% of the CDR3a sequence distances. We highly recommend setting more than 90 for this parameter.
+
 -s, –select: Only the top percent of distances from each TCR sequence to others will be considered when clustering. This value must be integers from 1 to 50 (default 10). For instance, “10” means that for each CDR3 sequence, only the top 10% distances to others will be preserved for clustering. A bigger percentage may conclude a more convincing conclusion but with a much longer running time (we highly recommend using the default value for this parameter).
--ver, –verification: Whether to verify the result of TCR clustering using the corresponding epitope sequences.
-If this parameter is added, a .csv file containing the consensus motif of each cluster will be output. Remember
-to add the peptide column in your input file if this parameter is set.
+
+-ver, –verification: Whether to verify the result of TCR clustering using the corresponding epitope sequences. If this parameter is added, a .csv file containing the consensus motif of each cluster will be output. Remember to add the peptide column in your input file if this parameter is set.
+
 -out, –output: The path and the title name for output files. We have more than one output file, therefore you just need to provide the title name, not including the format of the output files. For example, use -out test instead of -out test.txt or test.png.
 
 **4.3 Output format**
